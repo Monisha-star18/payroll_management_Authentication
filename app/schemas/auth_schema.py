@@ -3,7 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class RegisterRequest(BaseModel):
     username: str = Field(min_length=3, max_length=50)
-    password: str = Field(min_length=6, max_length=72)
+    password: str = Field(min_length=6, max_length=18)
 
 class TokenResponse(BaseModel):
     access_token: str
