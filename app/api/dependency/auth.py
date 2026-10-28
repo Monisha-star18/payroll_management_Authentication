@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.connection import get_session
-from app.dependency.dependency import get_auth_service
+from app.api.dependency.dependency import get_auth_service
 from app.models.User_Model import User
 from app.services.implementation.auth_service import AuthService
 

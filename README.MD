@@ -38,8 +38,13 @@ python -c "import secrets; print(secrets.token_hex(32))"
 
 The app stops at start-up with an error if `DATABASE_URL` is not set. Create the empty database first:
 
+```
+
 ```sql
 CREATE DATABASE employee_payroll_db;
+
+CREATE DATABASE employee_payroll_test_db;
+
 ```
 
 ### 4. Run the migrations
@@ -58,4 +63,6 @@ This creates the tables, inserts the sample employee and salary data, and create
 python create_admin.py
 
 uvicorn main:app --reload
+
+python -m pytest tests/test_endpoints.py -v
 ```

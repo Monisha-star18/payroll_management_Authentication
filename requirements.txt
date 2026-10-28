@@ -9,3 +9,5 @@ alembic
 PyJWT
 python-multipart
 pwdlib[argon2]
+pytest
+httpx2

@@ -3,8 +3,8 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.connection import get_session
-from app.dependency.auth import get_current_user
-from app.dependency.dependency import get_auth_service
+from app.api.dependency.auth import get_current_user
+from app.api.dependency.dependency import get_auth_service
 from app.models.User_Model import User
 from app.schemas.auth_schema import RegisterRequest, TokenResponse, UserResponse
 from app.services.implementation.auth_service import AuthService
