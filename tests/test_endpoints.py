@@ -25,7 +25,7 @@ def test_me_invalid_token(client):
     assert response.status_code == 401
 
 
-# Test 3: Invalid registration input
+# Test 3: Invalid registration input This test focuses on Pydantic validation.
 def test_register_invalid_data(client):
 
     response = client.post(
@@ -36,13 +36,14 @@ def test_register_invalid_data(client):
         }
     )
 
-    assert response.status_code == 422
+    assert response.status_code == 422 #Unprocessable Entity
 
 
 # Test 4: Admin-only employee creation
 def test_user_cannot_add_employee(client):
 
     async def fake_user():
+        #SimpleNamespace creates an object with attributes
         return SimpleNamespace(
             id=1,
             username="testuser",
@@ -97,5 +98,5 @@ def test_user_cannot_increment_salary(client):
 def test_report_without_token(client):
 
     response = client.get("/api/report/")
-
+ 
     assert response.status_code == 401
