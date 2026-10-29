@@ -1,18 +1,20 @@
-from fastapi import APIRouter , Depends,Path
+from fastapi import APIRouter, Depends, Path
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database.session import get_session
 from app.api.dependency.auth import require_roles
 from app.api.dependency.dependency import get_all_services
-from app.schemas.employee_salary_schema import EmployeeCreateResponse, EmployeeFullResponse, SalaryCreateResponse
+from app.database.session import get_session
+from app.schemas.employee_salary_schema import (
+    CreateEmployeeDetails,
+    CreateEmployeeSalary,
+    DepartmentTotalResponse,
+    EmployeeCreateResponse,
+    EmployeeFullResponse,
+    IncrementRequest,
+    IncrementResponse,
+    SalaryCreateResponse,
+)
 from app.services.implementation.employee_salary_service import EmployeeSalaryService
-from app.schemas.employee_salary_schema import (IncrementResponse, 
-                     IncrementRequest, 
-                     CreateEmployeeDetails,
-                     CreateEmployeeSalary,
-                     DepartmentTotalResponse)
-
-
 
 router = APIRouter(prefix="/api/employee_salary")
 

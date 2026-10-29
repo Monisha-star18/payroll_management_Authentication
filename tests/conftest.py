@@ -1,10 +1,13 @@
+import asyncio
+
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy.ext.asyncio import create_async_engine,async_sessionmaker
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from main import app
-from app.database.session import get_session
 from app.core.config import get_settings
+from app.database.base import Base
+from app.database.session import get_session
+from main import app
 
 setting = get_settings()
 
@@ -27,10 +30,35 @@ TestingSessionLocal = async_sessionmaker(
     expire_on_commit=False
 )
 
-# Override function the original session dependency
+
+
+# Create and delete tables automatically
+@pytest.fixture(scope="session", autouse=True)
+def setup_test_database():
+
+    async def create_tables():
+        async with test_engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+
+    async def delete_tables():
+        async with test_engine.begin() as conn:
+            await conn.run_sync(Base.metadata.drop_all)
+
+        await test_engine.dispose()
+
+    asyncio.run(create_tables())
+
+    try:
+        yield
+    finally:
+        asyncio.run(delete_tables())
+
+
+# Override the real database session
 async def override_get_session():
-    async with TestingSessionLocal() as session :
+    async with TestingSessionLocal() as session:
         yield session
+
 
 @pytest.fixture
 def client():

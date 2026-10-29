@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.User_Model import User
@@ -11,7 +11,7 @@ class UserRepoInterface(ABC):
     async def get_by_username(self,
         username: str,
         db: AsyncSession
-        ) -> Optional[User]:
+        ) -> User | None:
         pass
 
     @abstractmethod

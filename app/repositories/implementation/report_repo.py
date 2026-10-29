@@ -7,6 +7,7 @@ from app.models.Employee_Details_Model import EmployeeDeatils
 from app.repositories.interface.report_repo_interface import EmployeeReportRepoInterface
 from app.schemas.employee_salary_schema import EmployeeReportResponse
 
+
 class EmployeeReportRepo(EmployeeReportRepoInterface):
 
     async def fetch_report(self,

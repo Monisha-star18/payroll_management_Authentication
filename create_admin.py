@@ -1,11 +1,13 @@
 import asyncio
+import os
+
+from dotenv import load_dotenv
 from sqlalchemy import select
+
 from app.core.security import hash_password
 from app.database.connection import SessionLocal
 from app.models.User_Model import User
 
-import os
-from dotenv import load_dotenv
 load_dotenv()
 
 admin__password = os.getenv("ADMIN_PASSWORD")

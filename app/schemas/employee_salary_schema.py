@@ -1,6 +1,6 @@
-from decimal import Decimal
-from typing import Literal, Optional
-from pydantic import BaseModel,ConfigDict,Field
+from typing import Literal
+
+from pydantic import BaseModel, ConfigDict, Field
 
 BASIC_SALARY = dict(gt=5_000,lt=1_000_000)
 GENDER = Literal["Male", "Female", "Other"]     
@@ -47,7 +47,7 @@ class IncrementRequest(Base):
 #for the increament response body 
 class IncrementResponse(Base):
     message: str
-    details: Optional[EmployeeSalaryResponse] = None
+    details: EmployeeSalaryResponse | None = None
 
 #for the department wise total salary
 class DepartmentTotalResponse(Base):
@@ -83,10 +83,10 @@ class EmployeeFullResponse(Base):
     employee_name: str
     gender: str
     department: str
-    employee_salary: Optional[float] = None
-    da: Optional[float] = None
-    pf: Optional[float] = None
-    employee_gross_salary: Optional[float] = None
+    employee_salary: float | None = None
+    da: float | None = None
+    pf: float | None = None
+    employee_gross_salary: float | None = None
 
 class DepartmentTotalResponse(Base):
     department: str

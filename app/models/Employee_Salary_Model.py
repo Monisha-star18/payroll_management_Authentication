@@ -1,15 +1,10 @@
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from sqlalchemy import (Integer,
-                        Numeric , 
-                        CheckConstraint,
-                        ForeignKey)
-
-from sqlalchemy.orm import Mapped , mapped_column, relationship 
-from decimal import Decimal
+from sqlalchemy import CheckConstraint, ForeignKey, Integer, Numeric
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
-
 
 if TYPE_CHECKING:
     from models.Employee_Details_Model import EmployeeDeatils

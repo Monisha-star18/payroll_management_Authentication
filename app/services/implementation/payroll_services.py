@@ -6,21 +6,21 @@ from app.services.interface.payroll_services_interface import PayrollServiceInte
 class PayrollService(PayrollServiceInterface):
     
     def calculate_da(self,
-        basic_salary: float|int
+        basic_salary: float
         )->float|int:
         
         return round(basic_salary * 0.10,2)
     
     
     def calculate_pf(self, 
-        basic_salary: float|int
+        basic_salary: float
         )->float|int:
 
         return round(basic_salary * 0.12,2)
 
 
     def calculate_gross_salary(self, 
-        basic_salary: float|int
+        basic_salary: float
         )->float|int:
         
         da = self.calculate_da(basic_salary)

@@ -1,14 +1,25 @@
 from decimal import Decimal
-from fastapi import HTTPException,Depends
-from sqlalchemy import func, select,text
-from sqlalchemy.ext.asyncio import AsyncSession
+
+from fastapi import HTTPException
+from sqlalchemy import func, select, text
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload
 
 from app.models.Employee_Details_Model import EmployeeDeatils
 from app.models.Employee_Salary_Model import EmployeePayDeatils
-from app.repositories.interface.employee_salary_interface import EmployeeSalaryRepoInterface
-from app.schemas.employee_salary_schema import CreateEmployeeDetails, DepartmentTotalResponse, EmployeeCreateResponse, EmployeeFullResponse, IncrementResponse, SalaryCreateResponse, SalaryRecord
+from app.repositories.interface.employee_salary_interface import (
+    EmployeeSalaryRepoInterface,
+)
+from app.schemas.employee_salary_schema import (
+    CreateEmployeeDetails,
+    DepartmentTotalResponse,
+    EmployeeCreateResponse,
+    EmployeeFullResponse,
+    IncrementResponse,
+    SalaryCreateResponse,
+    SalaryRecord,
+)
 
 
 class EmployeeSalaryRepo(EmployeeSalaryRepoInterface):

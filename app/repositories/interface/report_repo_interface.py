@@ -1,4 +1,5 @@
-from abc import ABC,abstractmethod
+from abc import ABC, abstractmethod
+
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.schemas.employee_salary_schema import EmployeeReportResponse

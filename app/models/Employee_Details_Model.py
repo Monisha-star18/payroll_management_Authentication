@@ -1,12 +1,9 @@
-from typing import TYPE_CHECKING,Optional
+from typing import TYPE_CHECKING, Optional
 
-from sqlalchemy import (Integer,
-                        String)
-
-from sqlalchemy.orm import Mapped , mapped_column , relationship
+from sqlalchemy import Integer, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
-
 
 if TYPE_CHECKING:
     from models.Employee_Salary_Model import EmployeePayDeatils

@@ -1,4 +1,4 @@
-from typing import Optional
+
 from fastapi import HTTPException
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
@@ -13,7 +13,7 @@ class UserRepo(UserRepoInterface):
     async def get_by_username(self,
         username: str,
         db: AsyncSession
-        ) -> Optional[User]:
+        ) -> User | None:
 
         try:
             result = await db.execute(select(User).where(User.username == username))

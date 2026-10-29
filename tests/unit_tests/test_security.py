@@ -1,15 +1,15 @@
 
-import pytest
 import jwt
-
-from app.core.security import (
-    hash_password,
-    verify_password,
-    create_access_token,
-    decode_access_token
-)
+import pytest
 
 from app.core import security
+from app.core.security import (
+    create_access_token,
+    decode_access_token,
+    hash_password,
+    verify_password,
+)
+
 
 def test_password_hashing():
     password = "TestPassword@123"

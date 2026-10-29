@@ -3,8 +3,8 @@ import pytest
 from pydantic import ValidationError
 
 from app.schemas.employee_salary_schema import (
-    CreateEmployeeSalary,
     CreateEmployeeDetails,
+    CreateEmployeeSalary,
     IncrementRequest,
 )
 

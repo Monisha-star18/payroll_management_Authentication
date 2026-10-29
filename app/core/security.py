@@ -1,5 +1,6 @@
+from datetime import UTC, datetime, timedelta
+
 import jwt
-from datetime import datetime, timedelta, timezone
 from pwdlib import PasswordHash
 
 from app.core.config import get_settings
@@ -29,7 +30,7 @@ def create_access_token(username: str, role: str) -> str:
     payload = {
         "sub": username,
         "role": role,
-        "exp": datetime.now(timezone.utc) + timedelta(minutes=EXPIRE_MINUTES),
+        "exp": datetime.now(UTC) + timedelta(minutes=EXPIRE_MINUTES),
     }
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
