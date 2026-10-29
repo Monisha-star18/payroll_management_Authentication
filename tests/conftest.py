@@ -1,15 +1,14 @@
-import os
-from dotenv import load_dotenv
-from fastapi.testclient import TestClient
 import pytest
+from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import create_async_engine,async_sessionmaker
 
 from main import app
-from app.database.connection import get_session
+from app.database.session import get_session
+from app.core.config import get_settings
 
-load_dotenv()
+setting = get_settings()
 
-TEST_DATABASE_URL = os.getenv('TEST_DATABASE_URL')
+TEST_DATABASE_URL = setting.test_database_url
 
 if not TEST_DATABASE_URL:
     raise RuntimeError(

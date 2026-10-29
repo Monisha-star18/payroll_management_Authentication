@@ -1,7 +1,7 @@
 from fastapi import APIRouter , Depends,Path
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.database.connection import get_session
+from app.database.session import get_session
 from app.api.dependency.auth import require_roles
 from app.api.dependency.dependency import get_all_services
 from app.schemas.employee_salary_schema import EmployeeCreateResponse, EmployeeFullResponse, SalaryCreateResponse

@@ -5,7 +5,7 @@ from sqlalchemy import (Integer,
 
 from sqlalchemy.orm import Mapped , mapped_column , relationship
 
-from app.models.Table_Model import Base
+from app.database.base import Base
 
 
 if TYPE_CHECKING:

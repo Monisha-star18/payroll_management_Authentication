@@ -1,18 +1,18 @@
-import os
-from datetime import datetime, timedelta, timezone
-
 import jwt
-from dotenv import load_dotenv
+from datetime import datetime, timedelta, timezone
 from pwdlib import PasswordHash
 
-load_dotenv()
+from app.core.config import get_settings
 
-SECRET_KEY = os.getenv("SECRET_KEY")
+setting = get_settings()
+
+SECRET_KEY = setting.secret_key
+
 if not SECRET_KEY:
     raise RuntimeError("SECRET_KEY is not set. Check your .env file.")
 
 ALGORITHM = "HS256"
-EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
+EXPIRE_MINUTES = int(setting.access_token_expire_minutes)
 
 password_hash = PasswordHash.recommended()
 
