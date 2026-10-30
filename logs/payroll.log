@@ -46,3 +46,9 @@
 2026-10-30 15:30:51,240 | INFO | payroll_app | Payroll Management API configured
 2026-10-30 15:31:18,093 | INFO | payroll_app | Payroll Management API configured
 2026-10-30 15:31:22,134 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 15:31:54,492 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 15:32:03,681 | INFO | payroll_app | GET /docs | Status: 200 | Time: 0.0005 seconds
+2026-10-30 15:32:04,036 | INFO | payroll_app | GET /openapi.json | Status: 200 | Time: 0.0606 seconds
+2026-10-30 15:32:17,287 | INFO | payroll_app | POST /api/auth/login | Status: 200 | Time: 0.2174 seconds
+2026-10-30 15:33:02,653 | INFO | payroll_app | Welcome email accepted by SMTP | ref=8b7b59aa
+2026-10-30 15:33:02,655 | INFO | payroll_app | POST /api/employee_salary/add_employee_deatils | Status: 200 | Time: 4.0974 seconds
