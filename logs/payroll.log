@@ -1,0 +1,15 @@
+2026-10-30 10:50:13,722 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:50:53,854 | WARNING | payroll_app | 401 | POST /api/employee_salary/add_employee_deatils | HTTP exception
+2026-10-30 10:51:09,540 | WARNING | payroll_app | 500 | POST /api/employee_salary/add_employee_deatils | HTTP exception
+2026-10-30 10:51:44,979 | ERROR | payroll_app | 500 | POST /api/employee_salary/add_employee_salary_deatils | Database operation failed
+2026-10-30 10:54:31,992 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:54:38,281 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:54:44,371 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:54:49,218 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:54:53,517 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:54:56,608 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:55:00,529 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:55:03,257 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:55:07,766 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:55:10,525 | INFO | payroll_app | Payroll Management API configured
+2026-10-30 10:55:25,379 | INFO | payroll_app | Payroll Management API configured

@@ -2,10 +2,12 @@ from decimal import Decimal
 
 from fastapi import HTTPException
 from sqlalchemy import func, select, text
+from sqlalchemy import exc
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload
 
+from app.core.exceptions.exceptions import DatabaseOperationException, EmployeeAlreadyExistsException, EmployeeNotFoundException
 from app.models.Employee_Details_Model import EmployeeDeatils
 from app.models.Employee_Salary_Model import EmployeePayDeatils
 from app.repositories.interface.employee_salary_interface import (
@@ -66,25 +68,23 @@ class EmployeeSalaryRepo(EmployeeSalaryRepoInterface):
             return{"message":f"Employee with ID {employee_details["employee_id"]} is added" , 
                    "Salary_deatiles":employee_details}
        
-        except IntegrityError as er:
+        except IntegrityError as exc:
             await db.rollback()
-            
-            orig = er.orig
-            error_type = type(orig).__name__
 
-            if error_type == "ForeignKeyViolationError":
-                raise HTTPException(  status_code=404,  detail="Employee is not registered.") from er
+            constraint = getattr(
+                getattr(exc, "orig", None),
+                "constraint_name",
+                None
+            )
 
-            elif error_type == "UniqueViolationError":
-                raise HTTPException( status_code=409, detail="Salary details already exist.") from er
+            if constraint in {"Employee_Details_pkey"}:
+                raise EmployeeAlreadyExistsException() from exc
 
-            else:
-                raise HTTPException(status_code=400,detail="Database integrity constraint violation.") from er
+            raise DatabaseOperationException() from exc
 
-        except SQLAlchemyError as er:
+        except SQLAlchemyError as exc:
             await db.rollback()
-            raise HTTPException(status_code=500, detail=str(er))
-            
+            raise DatabaseOperationException() from exc
 
     #get  employees  by id 
     async def fetch_all_employee_salary(self, 
@@ -98,8 +98,8 @@ class EmployeeSalaryRepo(EmployeeSalaryRepoInterface):
                                 )
             
             if employee is None :
-                raise HTTPException(status_code=404,
-                                detail=f"Employee {employee_id} not found")
+                raise EmployeeNotFoundException(employee_id)
+            
             basic = None
             gross_salary = None
             da = None
@@ -130,7 +130,7 @@ class EmployeeSalaryRepo(EmployeeSalaryRepoInterface):
 
             
         except SQLAlchemyError as er:
-            raise HTTPException(status_code=500, detail=str(er))
+            raise DatabaseOperationException() from er
 
     #Increment by percentage  using store procedure 
     async def increase_salary(self, 
