@@ -7,8 +7,7 @@ from app.repositories.interface.employee_salary_interface import (
 from app.schemas.employee_salary_schema import (
     CreateEmployeeDetails,
     CreateEmployeeSalary,
-    DepartmentTotalResponse,
-    EmployeeCreateResponse,
+    DepartmentTotalResponse ,
     EmployeeFullResponse,
     IncrementRequest,
     SalaryComponents,

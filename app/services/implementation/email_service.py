@@ -1,4 +1,3 @@
-import secrets
 import smtplib
 import ssl
 import asyncio
@@ -13,7 +12,6 @@ def send_welcome_email_sync( employee_name: str, employee_email: str) -> bool:
 
     settings = get_settings()
 
-
     message = EmailMessage()
 
     message["From"] = settings.smtp_from_email
@@ -22,7 +20,7 @@ def send_welcome_email_sync( employee_name: str, employee_email: str) -> bool:
 
     message.set_content(
         f"Hello {employee_name},\n\n"
-        "Welcome to our company!\n\n"
+        "Welcome to our company CG VAK !\n\n"
         "Your employee registration has been completed "
         "successfully.\n\n"
         "We are happy to have you on our team.\n\n"
@@ -47,18 +45,13 @@ def send_welcome_email_sync( employee_name: str, employee_email: str) -> bool:
 
             server.send_message(message)
 
-        logger.info(
-            "Welcome email accepted by SMTP ")
+        logger.info("Welcome email accepted by SMTP ")
 
         return True
 
     except (smtplib.SMTPException, OSError) as exc:
 
-        logger.error(
-            "Welcome email failed | "
-            "error_type=%s",
-            type(exc).__name__
-        )
+        logger.error("Welcome email failed | ""error_type=%s",type(exc).__name__)
 
         return False
 
