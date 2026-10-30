@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from app.core.config import get_settings
 from app.database.base import Base
 from app.database.session import get_session
-from main import app
+from app.main import app
 
 setting = get_settings()
 

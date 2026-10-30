@@ -5,7 +5,7 @@ from types import SimpleNamespace
 import pytest
 
 from app.api.dependency.auth import get_current_user
-from main import app
+from app.main import app
 
 
 # Generate a unique username for every test
