@@ -62,7 +62,7 @@ This creates the tables, inserts the sample employee and salary data, and create
 ```bash
 python create_admin.py
 
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 
 python -m pytest tests/test_endpoints.py -v
 ```

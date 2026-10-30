@@ -16,6 +16,15 @@ from app.schemas.employee_salary_schema import (
 )
 from app.services.interface.payroll_services_interface import PayrollServiceInterface
 
+from app.schemas.employee_salary_schema import (
+    CreateEmployeeWithEmail,
+    CreateEmployeeDetails,
+)
+
+from app.services.implementation.email_service import (
+    send_welcome_email,
+)
+
 
 class EmployeeSalaryService:
 
@@ -45,12 +54,34 @@ class EmployeeSalaryService:
             return salary_deatils
 
 
-    async def add_employee_personalDetails(self,
-        employee_details:CreateEmployeeDetails,
-        db:AsyncSession
-        ) -> EmployeeCreateResponse:
+    
+    async def add_employee_personalDetails( self,
+        employee_details: CreateEmployeeWithEmail,
+        db: AsyncSession
+    ):
 
-        return await self.employee_repository.post_employee_personalDetails(employee_details,db)
+        # Extract email temporarily for sending
+        employee_email = employee_details.email
+
+        # Remove email before sending data to repository
+        employee_data = CreateEmployeeDetails(
+            **employee_details.model_dump(exclude={"email"})
+        )
+
+        # Insert only employee data in PostgreSQL
+        result = await ( self.employee_repository.post_employee_personalDetails(employee_data,db) )
+
+        # Send email only after successful database insert
+        email_sent = await send_welcome_email(
+            employee_name=employee_data.employee_name,
+            employee_email=employee_email
+        )
+
+        return {
+            **result,
+            "email_sent": email_sent
+        }
+
 
 
     #post new employees

@@ -6,11 +6,11 @@ from app.api.routers.report_router import router as report_router
 
 from app.core.exceptions.exception_handlers import register_exception_handlers
 
-from app.core.logger import logger
+from app.utilites.logger import logger
 import time
 from fastapi import Request
 
-from app.core.logger import logger
+from app.utilites.logger import logger
 
 app = FastAPI(title="Employee Payroll Management")
 

@@ -5,7 +5,6 @@ from app.api.dependency.auth import require_roles
 from app.api.dependency.dependency import get_all_services
 from app.database.session import get_session
 from app.schemas.employee_salary_schema import (
-    CreateEmployeeDetails,
     CreateEmployeeSalary,
     DepartmentTotalResponse,
     EmployeeCreateResponse,
@@ -13,7 +12,9 @@ from app.schemas.employee_salary_schema import (
     IncrementRequest,
     IncrementResponse,
     SalaryCreateResponse,
+    CreateEmployeeWithEmail,
 )
+
 from app.services.implementation.employee_salary_service import EmployeeSalaryService
 
 router = APIRouter(prefix="/api/employee_salary")
@@ -24,7 +25,7 @@ router = APIRouter(prefix="/api/employee_salary")
             response_model=EmployeeCreateResponse,
             dependencies=[Depends(require_roles("admin"))]
             )
-async def add_employee_deatils( employee_details :CreateEmployeeDetails,
+async def add_employee_deatils( employee_details :CreateEmployeeWithEmail,
                                db:AsyncSession = Depends(get_session),
                                service:EmployeeSalaryService = Depends(get_all_services)
                                ):

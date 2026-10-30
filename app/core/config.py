@@ -19,6 +19,12 @@ class Settings(BaseSettings):
 
     admin_password: str
 
+    smtp_host: str = "smtp.gmail.com"
+    smtp_port: int = 465
+    smtp_username: str
+    smtp_password: str
+    smtp_from_email: str
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

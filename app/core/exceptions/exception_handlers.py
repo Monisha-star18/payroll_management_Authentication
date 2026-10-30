@@ -4,7 +4,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.core.exceptions.exceptions import AppException
-from app.core.logger import logger
+from app.utilites.logger import logger
 
 
 def register_exception_handlers(app: FastAPI):

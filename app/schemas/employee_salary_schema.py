@@ -1,6 +1,7 @@
+import re
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 BASIC_SALARY = dict(gt=5_000,lt=1_000_000)
 GENDER = Literal["Male", "Female", "Other"]     
@@ -103,3 +104,24 @@ class EmployeeReportResponse(Base):
     total_women_employee_count: int
     total_Men_employee_count: int
     departments_with_more_than_2_employees: list[DepartmentCountResponse]
+
+class CreateEmployeeWithEmail(CreateEmployeeDetails):
+    email: str
+
+    @field_validator("email")
+    @classmethod
+    def validate_email(cls, value: str) -> str:
+
+        value = value.strip()
+
+        pattern = r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+
+        if not re.fullmatch(pattern, value):
+            raise ValueError("Invalid email address")
+
+        return value
+
+class EmployeeCreateResponse(Base):
+    message: str
+    Employee_details: CreateEmployeeDetails
+    email_sent: bool
