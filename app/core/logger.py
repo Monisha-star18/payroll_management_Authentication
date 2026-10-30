@@ -35,8 +35,8 @@ def setup_logger():
     file_handler.setFormatter(formatter)
 
     logger.addHandler(file_handler)
-    
+ 
     return logger
-
+ 
 
 logger = setup_logger()
