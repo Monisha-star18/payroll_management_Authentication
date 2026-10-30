@@ -112,6 +112,9 @@ alembic upgrade head
 # Create administrator
 python create_admin.py
 
+#Generate Secret Key 
+python -c "import secrets; print(secrets.token_hex(32))"
+
 # Start FastAPI server
 uvicorn app.main:app --reload
 ```

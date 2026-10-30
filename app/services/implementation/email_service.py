@@ -13,8 +13,6 @@ def send_welcome_email_sync( employee_name: str, employee_email: str) -> bool:
 
     settings = get_settings()
 
-    # Reference for troubleshooting, not authentication
-    reference_id = secrets.token_hex(4)
 
     message = EmailMessage()
 
@@ -28,7 +26,6 @@ def send_welcome_email_sync( employee_name: str, employee_email: str) -> bool:
         "Your employee registration has been completed "
         "successfully.\n\n"
         "We are happy to have you on our team.\n\n"
-        f"Reference ID: {reference_id}\n\n"
         "Regards,\n"
         "HR Department"
     )
@@ -51,18 +48,15 @@ def send_welcome_email_sync( employee_name: str, employee_email: str) -> bool:
             server.send_message(message)
 
         logger.info(
-            "Welcome email accepted by SMTP | ref=%s",
-            reference_id
-        )
+            "Welcome email accepted by SMTP ")
 
         return True
 
     except (smtplib.SMTPException, OSError) as exc:
 
         logger.error(
-            "Welcome email failed | ref=%s | "
+            "Welcome email failed | "
             "error_type=%s",
-            reference_id,
             type(exc).__name__
         )
 

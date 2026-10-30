@@ -43,8 +43,7 @@ def admin_client(client):
 def test_register_user(client):
     username = unique_username()
 
-    response = client.post(
-        "/api/auth/register",
+    response = client.post( "/api/auth/register",
         json={
             "username": username,
             "password": "Test@12345"
@@ -55,14 +54,13 @@ def test_register_user(client):
     assert response.json()["username"] == username
     assert response.json()["role"] == "user"
 
-
+ 
 # TEST 2: Login successfully
 def test_login_success(client):
     username = unique_username()
     password = "Test@12345"
 
-    register = client.post(
-        "/api/auth/register",
+    register = client.post("/api/auth/register",
         json={
             "username": username,
             "password": password
@@ -70,8 +68,7 @@ def test_login_success(client):
     )
     assert register.status_code == 200
 
-    response = client.post(
-        "/api/auth/login",
+    response = client.post("/api/auth/login",
         data={
             "username": username,
             "password": password
@@ -87,8 +84,7 @@ def test_login_success(client):
 def test_login_wrong_password(client):
     username = unique_username()
 
-    register = client.post(
-        "/api/auth/register",
+    register = client.post("/api/auth/register",
         json={
             "username": username,
             "password": "Correct@123"
@@ -96,8 +92,7 @@ def test_login_wrong_password(client):
     )
     assert register.status_code == 200
 
-    response = client.post(
-        "/api/auth/login",
+    response = client.post("/api/auth/login",
         data={
             "username": username,
             "password": "Wrong@123"
@@ -112,8 +107,7 @@ def test_get_current_user(client):
     username = unique_username()
     password = "Test@12345"
 
-    register = client.post(
-        "/api/auth/register",
+    register = client.post("/api/auth/register",
         json={
             "username": username,
             "password": password
@@ -121,8 +115,7 @@ def test_get_current_user(client):
     )
     assert register.status_code == 200
 
-    login = client.post(
-        "/api/auth/login",
+    login = client.post("/api/auth/login",
         data={
             "username": username,
             "password": password
@@ -132,8 +125,7 @@ def test_get_current_user(client):
 
     token = login.json()["access_token"]
 
-    response = client.get(
-        "/api/auth/me",
+    response = client.get("/api/auth/me",
         headers={
             "Authorization": f"Bearer {token}"
         }
@@ -153,8 +145,7 @@ def test_without_token(client):
 def test_create_employee(admin_client):
     employee_id = unique_employee_id()
 
-    response = admin_client.post(
-        "/api/employee_salary/add_employee_deatils",
+    response = admin_client.post("/api/employee_salary/add_employee_deatils",
         json={
             "employee_id": employee_id,
             "employee_name": "Test Employee",
@@ -169,13 +160,29 @@ def test_create_employee(admin_client):
         == employee_id
     )
 
+# TEST 6: Admin creates employee
+def test_create_employee(admin_client):
+    employee_id = unique_employee_id()
+
+    response = admin_client.post("/api/employee_salary/add_employee_deatils",
+        json={
+            "employee_id": employee_id,
+            "employee_name": "Test Employee",
+            "email": f"employee{employee_id}@example.com",
+            "gender": "Female",
+            "department": "IT"
+        }
+    )
+
+    assert response.status_code == 200
+
+    assert (response.json()["Employee_details"]["employee_id"]  == employee_id)
 
 # TEST 7: Add employee salary
 def test_create_employee_salary(admin_client):
     employee_id = unique_employee_id()
 
-    employee = admin_client.post(
-        "/api/employee_salary/add_employee_deatils",
+    employee = admin_client.post("/api/employee_salary/add_employee_deatils",
         json={
             "employee_id": employee_id,
             "employee_name": "Salary Test",
@@ -185,8 +192,7 @@ def test_create_employee_salary(admin_client):
     )
     assert employee.status_code == 200
 
-    response = admin_client.post(
-        "/api/employee_salary/add_employee_salary_deatils",
+    response = admin_client.post( "/api/employee_salary/add_employee_salary_deatils",
         json={
             "employee_id": employee_id,
             "basic_salary": 20000
@@ -207,8 +213,7 @@ def test_create_employee_salary(admin_client):
 def test_get_employee(admin_client):
     employee_id = unique_employee_id()
 
-    created = admin_client.post(
-        "/api/employee_salary/add_employee_deatils",
+    created = admin_client.post("/api/employee_salary/add_employee_deatils",
         json={
             "employee_id": employee_id,
             "employee_name": "Employee Lookup",
@@ -218,9 +223,7 @@ def test_get_employee(admin_client):
     )
     assert created.status_code == 200
 
-    response = admin_client.get(
-        f"/api/employee_salary/{employee_id}"
-    )
+    response = admin_client.get(f"/api/employee_salary/{employee_id}")
 
     assert response.status_code == 200
     assert response.json()["employee_id"] == employee_id
@@ -229,18 +232,14 @@ def test_get_employee(admin_client):
 
 # TEST 9: Employee not found
 def test_employee_not_found(admin_client):
-    response = admin_client.get(
-        "/api/employee_salary/2147483647"
-    )
+    response = admin_client.get("/api/employee_salary/2147483647")
 
     assert response.status_code == 404
 
 
 # TEST 10: Invalid employee ID
 def test_invalid_employee_id(admin_client):
-    response = admin_client.get(
-        "/api/employee_salary/0"
-    )
+    response = admin_client.get("/api/employee_salary/0")
 
     assert response.status_code == 422
 
@@ -251,8 +250,7 @@ def test_invalid_employee_id(admin_client):
     [-1000, 0, 5000, 1000000]
 )
 def test_invalid_salary(admin_client, salary):
-    response = admin_client.post(
-        "/api/employee_salary/add_employee_salary_deatils",
+    response = admin_client.post("/api/employee_salary/add_employee_salary_deatils",
         json={
             "employee_id": 1,
             "basic_salary": salary
@@ -275,8 +273,7 @@ def test_user_cannot_create_employee(client):
     app.dependency_overrides[get_current_user] = fake_user
 
     try:
-        response = client.post(
-            "/api/employee_salary/add_employee_deatils",
+        response = client.post("/api/employee_salary/add_employee_deatils",
             json={
                 "employee_id": unique_employee_id(),
                 "employee_name": "Restricted Test",
@@ -295,8 +292,7 @@ def test_user_cannot_create_employee(client):
 
 # TEST 13: Department totals
 def test_department_totals(admin_client):
-    response = admin_client.get(
-        "/api/employee_salary/"
+    response = admin_client.get("/api/employee_salary/"
     )
 
     assert response.status_code == 200
