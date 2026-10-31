@@ -4,6 +4,7 @@ from app.api.routers.auth_router import router as auth_router
 from app.api.routers.employee_salary_router import router as employee_salary_router
 from app.api.routers.report_router import router as report_router
 from app.api.routers.razorpay_router import router as razorpay_router
+from app.api.routers.health_router import router as health_router
 
 from app.core.exceptions.exception_handlers import register_exception_handlers
 
@@ -24,6 +25,7 @@ app.include_router(employee_salary_router)
 app.include_router(report_router)
 app.include_router(auth_router)
 app.include_router(razorpay_router)
+app.include_router(health_router)
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):

@@ -63,3 +63,11 @@
 2026-10-31 11:47:17,406 | INFO | payroll_app | POST /api/razorpay/create-order | Status: 200 | Time: 0.2826 seconds
 2026-10-31 11:56:22,046 | INFO | payroll_app | Payroll Management API configured
 2026-10-31 11:56:25,138 | INFO | payroll_app | Payroll Management API configured
+2026-10-31 13:07:35,845 | INFO | payroll_app | Payroll Management API configured
+2026-10-31 13:07:38,279 | INFO | payroll_app | GET /docs | Status: 200 | Time: 0.0010 seconds
+2026-10-31 13:07:38,713 | INFO | payroll_app | GET /openapi.json | Status: 200 | Time: 0.1100 seconds
+2026-10-31 13:07:45,823 | INFO | payroll_app | POST /api/razorpay/create-order | Status: 200 | Time: 0.4438 seconds
+2026-10-31 14:50:39,704 | INFO | payroll_app | Payroll Management API configured
+2026-10-31 14:50:40,224 | INFO | payroll_app | GET /docs | Status: 200 | Time: 0.0006 seconds
+2026-10-31 14:50:40,447 | INFO | payroll_app | GET /openapi.json | Status: 200 | Time: 0.0589 seconds
+2026-10-31 14:50:47,049 | INFO | payroll_app | GET /api/health | Status: 200 | Time: 0.2593 seconds
