@@ -52,3 +52,14 @@
 2026-10-30 15:32:17,287 | INFO | payroll_app | POST /api/auth/login | Status: 200 | Time: 0.2174 seconds
 2026-10-30 15:33:02,653 | INFO | payroll_app | Welcome email accepted by SMTP | ref=8b7b59aa
 2026-10-30 15:33:02,655 | INFO | payroll_app | POST /api/employee_salary/add_employee_deatils | Status: 200 | Time: 4.0974 seconds
+2026-10-31 11:44:24,634 | INFO | payroll_app | Payroll Management API configured
+2026-10-31 11:44:27,888 | INFO | payroll_app | GET /docs | Status: 200 | Time: 0.0005 seconds
+2026-10-31 11:44:28,593 | INFO | payroll_app | GET /openapi.json | Status: 200 | Time: 0.1823 seconds
+2026-10-31 11:44:34,410 | INFO | payroll_app | POST /api/razorpay/create-order | Status: 200 | Time: 0.3654 seconds
+2026-10-31 11:45:21,417 | INFO | payroll_app | POST /api/razorpay/create-order | Status: 200 | Time: 0.2905 seconds
+2026-10-31 11:45:30,687 | INFO | payroll_app | POST /api/razorpay/create-order | Status: 200 | Time: 0.2503 seconds
+2026-10-31 11:45:35,038 | INFO | payroll_app | POST /api/razorpay/create-order | Status: 200 | Time: 0.2219 seconds
+2026-10-31 11:46:01,487 | INFO | payroll_app | POST /api/razorpay/create-order | Status: 200 | Time: 0.2560 seconds
+2026-10-31 11:47:17,406 | INFO | payroll_app | POST /api/razorpay/create-order | Status: 200 | Time: 0.2826 seconds
+2026-10-31 11:56:22,046 | INFO | payroll_app | Payroll Management API configured
+2026-10-31 11:56:25,138 | INFO | payroll_app | Payroll Management API configured

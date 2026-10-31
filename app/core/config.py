@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     smtp_password: str
     smtp_from_email: str
 
+    razorpay_key_id:str 
+    razorpay_key_secret:str
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

@@ -10,3 +10,4 @@ python-multipart
 pwdlib[argon2]
 pytest
 httpx
+razorpay
